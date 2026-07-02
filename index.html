@@ -17,344 +17,319 @@
             overflow: hidden;
         }
 
-        /* ===== HEADER ===== */
+        /* HEADER */
         .app-header {
             background: linear-gradient(120deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             color: #fff;
             padding: 16px 28px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            display: flex; align-items: center; gap: 12px;
             flex-shrink: 0;
             box-shadow: 0 2px 20px rgba(0,0,0,.3);
         }
         .app-header h1 {
-            font-size: 18px;
-            font-weight: 700;
-            letter-spacing: 1px;
+            font-size: 18px; font-weight: 700; letter-spacing: 1px;
             background: linear-gradient(90deg, #fff, #a29bfe);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        /* ===== LAYOUT ===== */
-        .app-body {
-            display: flex;
-            flex: 1;
-            overflow: hidden;
-        }
+        /* LAYOUT */
+        .app-body { display: flex; flex: 1; overflow: hidden; }
 
-        /* ===== SIDEBAR ===== */
+        /* SIDEBAR */
         .sidebar {
-            width: 190px;
-            flex-shrink: 0;
+            width: 190px; flex-shrink: 0;
             background: #fff;
             border-right: 1px solid #e9ecef;
-            display: flex;
-            flex-direction: column;
+            display: flex; flex-direction: column;
             padding: 16px 10px;
             gap: 2px;
             box-shadow: 2px 0 10px rgba(0,0,0,.05);
             overflow-y: auto;
         }
         .sidebar-label {
-            font-size: 10px;
-            font-weight: 800;
-            color: #adb5bd;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            font-size: 10px; font-weight: 800; color: #adb5bd;
+            letter-spacing: 2px; text-transform: uppercase;
             padding: 2px 10px 10px;
             border-bottom: 1px solid #f1f3f5;
             margin-bottom: 4px;
         }
         .sidebar-item {
-            padding: 10px 12px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: .15s;
-            font-size: 13px;
-            font-weight: 600;
-            color: #495057;
+            padding: 10px 12px; border-radius: 10px;
+            cursor: pointer; transition: .15s;
+            font-size: 13px; font-weight: 600; color: #495057;
         }
         .sidebar-item:hover { background: #f3f0ff; color: #6c5ce7; }
         .sidebar-item.active {
             background: linear-gradient(135deg, #6c5ce7, #a29bfe);
             color: #fff;
         }
-        .sidebar-item .item-role {
-            font-size: 10px;
-            font-weight: 400;
-            opacity: .7;
-            margin-top: 1px;
-        }
-        .sidebar-add {
-            margin-top: auto;
-            padding-top: 12px;
-            border-top: 1px solid #f1f3f5;
-        }
+        .sidebar-item .item-role { font-size: 10px; font-weight: 400; opacity: .7; margin-top: 1px; }
+        .sidebar-add { margin-top: auto; padding-top: 12px; border-top: 1px solid #f1f3f5; }
         .sidebar-add button {
-            width: 100%;
-            padding: 10px;
-            border: 2px dashed #dee2e6;
-            border-radius: 10px;
-            background: none;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 700;
-            color: #adb5bd;
+            width: 100%; padding: 10px;
+            border: 2px dashed #dee2e6; border-radius: 10px;
+            background: none; cursor: pointer;
+            font-size: 12px; font-weight: 700; color: #adb5bd;
             transition: .15s;
         }
         .sidebar-add button:hover { border-color: #6c5ce7; color: #6c5ce7; }
 
-        /* ===== MAIN ===== */
-        .main-content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 24px;
-        }
+        /* MAIN */
+        .main-content { flex: 1; overflow-y: auto; padding: 24px; }
 
-        /* ===== EMPTY STATE ===== */
+        /* EMPTY STATE */
         .empty-state {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            color: #ced4da;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            height: 100%; color: #ced4da;
         }
         .empty-state .e-icon { font-size: 52px; margin-bottom: 14px; }
         .empty-state p { font-size: 15px; }
 
-        /* ===== STAFF DETAIL ===== */
-        .staff-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* COMPANY HEADER */
+        .company-header {
+            display: flex; justify-content: space-between; align-items: center;
             margin-bottom: 20px;
         }
-        .staff-header-name { font-size: 22px; font-weight: 800; color: #1a1a2e; }
-        .staff-header-role { font-size: 13px; color: #868e96; margin-top: 2px; }
+        .company-name { font-size: 22px; font-weight: 800; color: #1a1a2e; }
+        .company-role { font-size: 13px; color: #868e96; margin-top: 2px; }
         .delete-btn {
-            background: none;
-            border: 1.5px solid #ff6b6b;
-            color: #ff6b6b;
-            padding: 7px 14px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 700;
-            transition: .2s;
+            background: none; border: 1.5px solid #ff6b6b; color: #ff6b6b;
+            padding: 7px 14px; border-radius: 8px; cursor: pointer;
+            font-size: 12px; font-weight: 700; transition: .2s;
         }
         .delete-btn:hover { background: #ff6b6b; color: #fff; }
 
-        /* ===== SECTION TABS ===== */
-        .section-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
+        /* TABS */
+        .tab-bar {
+            display: flex; gap: 6px; margin-bottom: 22px;
         }
-        .section-tab {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            padding: 10px 18px;
-            border-radius: 30px;
-            border: none;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 700;
-            transition: .2s;
-            background: #fff;
-            color: #868e96;
+        .tab-btn {
+            display: flex; align-items: center; gap: 7px;
+            padding: 10px 20px; border-radius: 30px; border: none;
+            cursor: pointer; font-size: 13px; font-weight: 700;
+            transition: .2s; background: #fff; color: #868e96;
             box-shadow: 0 2px 8px rgba(0,0,0,.08);
         }
-        .section-tab:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,.12); }
-        .section-tab.active {
-            color: #fff;
-            box-shadow: 0 4px 16px rgba(0,0,0,.2);
-            transform: translateY(-1px);
+        .tab-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,.12); }
+        .tab-btn.active { color: #fff; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,.2); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* ===== SESSION RECORDS ===== */
+        .session-toolbar {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 18px;
         }
-        .section-tab .tab-icon { font-size: 15px; }
+        .session-toolbar h3 { font-size: 15px; font-weight: 800; color: #495057; }
+        .add-session-btn {
+            display: flex; align-items: center; gap: 6px;
+            padding: 10px 18px; border-radius: 30px; border: none;
+            background: linear-gradient(135deg, #ff8a80, #ff6b6b);
+            color: #fff; font-size: 13px; font-weight: 700;
+            cursor: pointer; transition: .2s;
+            box-shadow: 0 4px 14px rgba(255,107,107,.35);
+        }
+        .add-session-btn:hover { opacity: .9; transform: translateY(-1px); }
 
-        /* ===== SECTION CONTENT ===== */
-        .section-content { display: none; }
-        .section-content.active { display: block; }
-
-        .section-card {
+        .session-card {
             background: #fff;
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 2px 16px rgba(0,0,0,.07);
+            border-radius: 18px;
+            padding: 20px 22px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 14px rgba(0,0,0,.07);
+            border: 1.5px solid #f0f0f0;
+            transition: .2s;
         }
-        .section-card-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            padding-bottom: 14px;
-            border-bottom: 2px solid #f8f9fa;
-        }
-        .section-card-header .sec-icon {
-            width: 40px; height: 40px;
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 20px;
-        }
-        .section-card-title {
-            font-size: 16px;
-            font-weight: 800;
-            color: #1a1a2e;
-        }
-        .section-card-count {
-            font-size: 12px;
-            color: #adb5bd;
-            margin-top: 2px;
-        }
+        .session-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.1); }
 
-        /* ===== PHOTO GRID ===== */
-        .photo-grid {
+        .session-card-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 16px; padding-bottom: 14px;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        .session-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+            color: #fff; padding: 5px 14px; border-radius: 20px;
+            font-size: 14px; font-weight: 800;
+        }
+        .session-date-input {
+            border: 1px solid #e9ecef; border-radius: 8px;
+            padding: 5px 10px; font-size: 12px; color: #868e96;
+            font-family: inherit; outline: none; transition: .2s;
+            background: #f8f9fa;
+        }
+        .session-date-input:focus { border-color: #6c5ce7; background: #fff; }
+        .session-delete-btn {
+            background: none; border: none; color: #ced4da;
+            cursor: pointer; font-size: 18px; padding: 4px; transition: .2s;
+        }
+        .session-delete-btn:hover { color: #ff6b6b; }
+
+        /* BEFORE/AFTER GRID */
+        .ba-columns {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 14px;
         }
-        .photo-item {
-            aspect-ratio: 1;
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-            cursor: zoom-in;
-            background: #f8f9fa;
-            box-shadow: 0 2px 10px rgba(0,0,0,.08);
-            transition: .2s;
+        .ba-col { }
+        .ba-col-title {
+            font-size: 11px; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 1.5px;
+            padding: 5px 12px; border-radius: 20px;
+            display: inline-block; margin-bottom: 10px;
         }
-        .photo-item:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(0,0,0,.15); }
-        .photo-item img { width: 100%; height: 100%; object-fit: cover; }
-        .photo-item-delete {
-            position: absolute;
-            top: 8px; right: 8px;
-            background: rgba(0,0,0,.55);
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 28px; height: 28px;
-            cursor: pointer;
-            font-size: 13px;
+        .ba-col-title.before-t { background: #fff0f0; color: #ff6b6b; }
+        .ba-col-title.after-t  { background: #edfff4; color: #00b894; }
+
+        .photo-slots {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+        }
+        .slot-wrap { }
+        .slot-label {
+            font-size: 10px; color: #adb5bd; font-weight: 700;
+            text-transform: uppercase; letter-spacing: .3px; margin-bottom: 4px;
+        }
+        .mini-slot {
+            aspect-ratio: 4/3;
+            border-radius: 10px;
+            border: 2px dashed #e9ecef;
+            position: relative; overflow: hidden;
+            cursor: pointer; background: #fafafa;
+            transition: .2s;
             display: flex; align-items: center; justify-content: center;
-            opacity: 0;
-            transition: .2s;
-            font-weight: 700;
+            flex-direction: column; gap: 4px; color: #ced4da;
         }
-        .photo-item:hover .photo-item-delete { opacity: 1; }
+        .mini-slot:hover { border-color: inherit; background: #f3f0ff; }
+        .mini-slot.filled { border-color: transparent; }
+        .mini-slot img {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        .mini-slot .pl-icon { font-size: 20px; pointer-events: none; }
+        .mini-slot .pl-text { font-size: 10px; font-weight: 600; pointer-events: none; }
+        .mini-overlay {
+            position: absolute; inset: 0;
+            background: rgba(0,0,0,.5);
+            display: flex; align-items: center; justify-content: center;
+            gap: 6px; opacity: 0; transition: .2s;
+        }
+        .mini-slot:hover .mini-overlay { opacity: 1; }
+        .mini-overlay button {
+            background: rgba(255,255,255,.92);
+            border: none; border-radius: 6px;
+            padding: 5px 10px; cursor: pointer;
+            font-size: 11px; font-weight: 700;
+        }
+        .mini-overlay .ov-del { color: #ff6b6b; }
 
-        .session-badge {
-            position: absolute;
-            bottom: 8px; left: 8px;
-            background: linear-gradient(135deg, #55efc4, #00b894);
-            color: #fff;
-            font-size: 11px;
-            font-weight: 800;
-            padding: 3px 10px;
-            border-radius: 20px;
-            letter-spacing: .3px;
-            box-shadow: 0 2px 8px rgba(0,184,148,.4);
-            pointer-events: none;
+        .no-sessions {
+            text-align: center; padding: 48px 20px; color: #ced4da;
         }
+        .no-sessions .ns-icon { font-size: 44px; margin-bottom: 12px; }
+        .no-sessions p { font-size: 14px; }
 
-        .photo-add-btn {
-            aspect-ratio: 1;
-            border-radius: 12px;
-            border: 2.5px dashed #dee2e6;
-            background: #f8f9fa;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: .2s;
-            color: #ced4da;
-            font-size: 13px;
-            font-weight: 600;
-            gap: 6px;
-        }
-        .photo-add-btn .add-plus { font-size: 28px; font-weight: 300; }
-        .photo-add-btn:hover { border-color: currentColor; }
-
-        /* ===== SINGLE PHOTO SLOT (HP TOP) ===== */
-        .single-photo-slot {
-            max-width: 380px;
-            margin: 0 auto;
-        }
+        /* HP TOP */
+        .single-photo-slot { max-width: 380px; margin: 0 auto; }
         .photo-upload-area {
             border: 2.5px dashed #dee2e6;
-            border-radius: 16px;
-            min-height: 260px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: .2s;
-            background: #f8f9fa;
-        }
-        .photo-upload-area.filled { border-style: solid; border-color: transparent; }
-        .photo-upload-area:hover .slot-overlay { opacity: 1; }
-        .slot-img {
-            position: absolute; inset: 0;
-            width: 100%; height: 100%;
-            object-fit: cover;
-        }
-        .slot-placeholder {
+            border-radius: 16px; min-height: 260px;
             display: flex; flex-direction: column;
-            align-items: center; gap: 10px;
-            color: #ced4da;
-            pointer-events: none;
+            align-items: center; justify-content: center;
+            cursor: pointer; position: relative;
+            overflow: hidden; transition: .2s; background: #f8f9fa;
         }
-        .slot-placeholder .pl-icon { font-size: 36px; }
+        .photo-upload-area.filled { border-color: transparent; }
+        .slot-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .slot-placeholder { display: flex; flex-direction: column; align-items: center; gap: 10px; color: #ced4da; pointer-events: none; }
+        .slot-placeholder .pl-icon2 { font-size: 36px; }
         .slot-placeholder span { font-size: 13px; font-weight: 600; }
         .slot-overlay {
             position: absolute; inset: 0;
             background: rgba(0,0,0,.5);
             display: flex; align-items: center; justify-content: center;
-            gap: 10px;
-            opacity: 0; transition: .2s;
+            gap: 10px; opacity: 0; transition: .2s;
         }
+        .photo-upload-area:hover .slot-overlay { opacity: 1; }
         .slot-overlay button {
-            background: rgba(255,255,255,.92);
-            border: none; border-radius: 8px;
-            padding: 8px 16px;
-            cursor: pointer;
-            font-size: 12px; font-weight: 700;
+            background: rgba(255,255,255,.92); border: none;
+            border-radius: 8px; padding: 8px 16px;
+            cursor: pointer; font-size: 12px; font-weight: 700;
         }
         .slot-overlay .ov-del { color: #ff6b6b; }
 
-        /* ===== MODAL ===== */
+        /* GALLERY */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+        }
+        .gallery-item {
+            border-radius: 12px; overflow: hidden;
+            position: relative; aspect-ratio: 1;
+            background: #f5f6fa; cursor: zoom-in;
+            box-shadow: 0 2px 8px rgba(0,0,0,.08);
+            transition: .2s;
+        }
+        .gallery-item:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(0,0,0,.14); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+        .del-gallery-btn {
+            position: absolute; top: 6px; right: 6px;
+            background: rgba(0,0,0,.55); color: #fff;
+            border: none; border-radius: 50%;
+            width: 26px; height: 26px; cursor: pointer;
+            font-size: 12px; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: .2s;
+        }
+        .gallery-item:hover .del-gallery-btn { opacity: 1; }
+        .gallery-add-btn {
+            border-radius: 12px; aspect-ratio: 1;
+            border: 2.5px dashed #dee2e6;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; font-size: 30px; color: #ced4da;
+            transition: .2s; background: #fafafa;
+        }
+        .gallery-add-btn:hover { border-color: #339af0; color: #339af0; background: #e8f4ff; }
+
+        /* SECTION CARD WRAP */
+        .section-card {
+            background: #fff; border-radius: 16px; padding: 24px;
+            box-shadow: 0 2px 16px rgba(0,0,0,.07);
+        }
+        .section-card-header {
+            display: flex; align-items: center; gap: 10px;
+            margin-bottom: 20px; padding-bottom: 14px;
+            border-bottom: 2px solid #f8f9fa;
+        }
+        .sec-icon {
+            width: 40px; height: 40px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+        }
+        .section-card-title { font-size: 16px; font-weight: 800; color: #1a1a2e; }
+        .section-card-sub { font-size: 12px; color: #adb5bd; margin-top: 2px; }
+
+        /* MODAL */
         .modal-bg {
-            display: none;
-            position: fixed; inset: 0;
+            display: none; position: fixed; inset: 0;
             background: rgba(10,10,30,.6);
             backdrop-filter: blur(4px);
-            z-index: 900;
-            align-items: center; justify-content: center;
+            z-index: 900; align-items: center; justify-content: center;
         }
         .modal-bg.open { display: flex; }
         .modal {
-            background: #fff;
-            border-radius: 20px;
-            padding: 32px;
-            width: 380px;
+            background: #fff; border-radius: 20px;
+            padding: 32px; width: 380px;
             box-shadow: 0 24px 60px rgba(0,0,0,.3);
         }
         .modal h3 { font-size: 18px; font-weight: 800; margin-bottom: 24px; color: #1a1a2e; }
         .fgroup { margin-bottom: 16px; }
         .fgroup label { display: block; font-size: 12px; font-weight: 700; color: #868e96; margin-bottom: 6px; text-transform: uppercase; letter-spacing: .5px; }
         .fgroup input {
-            width: 100%;
-            padding: 11px 14px;
-            border: 1.5px solid #e9ecef;
-            border-radius: 10px;
+            width: 100%; padding: 11px 14px;
+            border: 1.5px solid #e9ecef; border-radius: 10px;
             font-size: 14px; font-family: inherit;
             outline: none; transition: .2s;
         }
@@ -366,23 +341,20 @@
         .btn-ok { background: linear-gradient(135deg, #6c5ce7, #a29bfe); color: #fff; }
         .btn-ok:hover { opacity: .9; }
 
-        /* ===== LIGHTBOX ===== */
+        /* LIGHTBOX */
         .lightbox {
-            display: none;
-            position: fixed; inset: 0;
-            background: rgba(0,0,0,.92);
-            z-index: 1000;
-            align-items: center; justify-content: center;
-            cursor: zoom-out;
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,.92); z-index: 1000;
+            align-items: center; justify-content: center; cursor: zoom-out;
         }
         .lightbox.open { display: flex; }
         .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 10px; }
 
         .hidden-file { display: none; }
 
-        @media (max-width: 650px) {
+        @media (max-width: 700px) {
             .sidebar { width: 150px; }
-            .photo-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+            .ba-columns { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -408,29 +380,91 @@
     <main class="main-content">
         <div id="empty-state" class="empty-state">
             <div class="e-icon">👈</div>
-            <p>スタッフを選択してください</p>
+            <p>会社を選択してください</p>
         </div>
 
-        <div id="staff-detail" style="display:none">
-            <!-- Staff name header -->
-            <div class="staff-header">
+        <div id="company-detail" style="display:none">
+            <!-- Company header -->
+            <div class="company-header">
                 <div>
-                    <div class="staff-header-name" id="d-name"></div>
-                    <div class="staff-header-role" id="d-role"></div>
+                    <div class="company-name" id="d-name"></div>
+                    <div class="company-role" id="d-role"></div>
                 </div>
-                <button class="delete-btn" onclick="deleteStaff()">🗑 削除</button>
+                <button class="delete-btn" onclick="deleteCompany()">🗑 削除</button>
             </div>
 
-            <!-- Section tabs -->
-            <div class="section-tabs" id="section-tabs"></div>
+            <!-- Tab bar -->
+            <div class="tab-bar">
+                <button class="tab-btn active" id="tab-btn-sessions"
+                        style="background:linear-gradient(135deg,#ff8a80,#ff6b6b)"
+                        onclick="switchTab('sessions',this)">
+                    📋 施術記録
+                </button>
+                <button class="tab-btn" id="tab-btn-hpTop"
+                        onclick="switchTab('hpTop',this)">
+                    💎 ホットペッパー TOP
+                </button>
+                <button class="tab-btn" id="tab-btn-gallery"
+                        onclick="switchTab('gallery',this)">
+                    🎀 フォトギャラリー
+                </button>
+            </div>
 
-            <!-- Section contents (rendered dynamically) -->
-            <div id="section-contents"></div>
+            <!-- Tab: Sessions -->
+            <div class="tab-content active" id="tab-sessions">
+                <div class="session-toolbar">
+                    <h3 id="session-count-label"></h3>
+                    <button class="add-session-btn" onclick="addSession()">
+                        ＋ 新しい施術を記録
+                    </button>
+                </div>
+                <div id="session-list"></div>
+            </div>
+
+            <!-- Tab: HP TOP -->
+            <div class="tab-content" id="tab-hpTop">
+                <div class="section-card">
+                    <div class="section-card-header">
+                        <div class="sec-icon" style="background:#fff5e6">💎</div>
+                        <div>
+                            <div class="section-card-title">ホットペッパー TOP写真</div>
+                            <div class="section-card-sub">メイン写真（1枚）</div>
+                        </div>
+                    </div>
+                    <div class="single-photo-slot">
+                        <div class="photo-upload-area" id="hp-top-area"
+                             onclick="document.getElementById('fi-hpTop').click()">
+                            <div class="slot-placeholder">
+                                <span class="pl-icon2">💎</span>
+                                <span>タップして追加</span>
+                            </div>
+                            <div class="slot-overlay">
+                                <button onclick="event.stopPropagation();document.getElementById('fi-hpTop').click()">変更</button>
+                                <button class="ov-del" onclick="event.stopPropagation();clearHpTop()">削除</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Gallery -->
+            <div class="tab-content" id="tab-gallery">
+                <div class="section-card">
+                    <div class="section-card-header">
+                        <div class="sec-icon" style="background:#e8f4ff">🎀</div>
+                        <div>
+                            <div class="section-card-title">フォトギャラリー</div>
+                            <div class="section-card-sub" id="gallery-count-label"></div>
+                        </div>
+                    </div>
+                    <div class="gallery-grid" id="gallery-grid"></div>
+                </div>
+            </div>
         </div>
     </main>
 </div>
 
-<!-- ADD STAFF MODAL -->
+<!-- ADD COMPANY MODAL -->
 <div class="modal-bg" id="add-modal" onclick="if(event.target===this)closeAddModal()">
     <div class="modal">
         <h3>🏢 会社を追加</h3>
@@ -440,34 +474,13 @@
                    onkeydown="if(event.key==='Enter')document.getElementById('inp-role').focus()" />
         </div>
         <div class="fgroup">
-            <label>役職</label>
-            <input id="inp-role" type="text" placeholder="スタイリスト"
-                   onkeydown="if(event.key==='Enter')addStaff()" />
+            <label>担当者 / メモ</label>
+            <input id="inp-role" type="text" placeholder="担当者名など"
+                   onkeydown="if(event.key==='Enter')addCompany()" />
         </div>
         <div class="modal-actions">
             <button class="btn btn-cancel" onclick="closeAddModal()">キャンセル</button>
-            <button class="btn btn-ok" onclick="addStaff()">追加する</button>
-        </div>
-    </div>
-</div>
-
-<!-- SESSION MODAL -->
-<div class="modal-bg" id="session-modal" onclick="if(event.target===this)cancelSession()">
-    <div class="modal">
-        <h3>🌸 何回目の施術ですか？</h3>
-        <div class="fgroup">
-            <label>施術回数</label>
-            <div style="display:flex;align-items:center;gap:10px">
-                <input id="session-input" type="number" min="1"
-                       style="max-width:110px;font-size:22px;font-weight:800;text-align:center;border-color:#00b894"
-                       onkeydown="if(event.key==='Enter')confirmSession()" />
-                <span style="font-size:18px;font-weight:700;color:#868e96">回目</span>
-            </div>
-        </div>
-        <div class="modal-actions">
-            <button class="btn btn-cancel" onclick="cancelSession()">キャンセル</button>
-            <button class="btn btn-ok" style="background:linear-gradient(135deg,#55efc4,#00b894)"
-                    onclick="confirmSession()">追加する</button>
+            <button class="btn btn-ok" onclick="addCompany()">追加する</button>
         </div>
     </div>
 </div>
@@ -477,28 +490,25 @@
     <img id="lb-img" src="" alt="" />
 </div>
 
-<!-- Hidden file inputs (one per section + single for TOP) -->
-<input type="file" accept="image/*" multiple class="hidden-file" id="fi-before"  onchange="handleMultiUpload(event,'before')" />
-<input type="file" accept="image/*" multiple class="hidden-file" id="fi-after"   onchange="handleMultiUpload(event,'after')" />
-<input type="file" accept="image/*" multiple class="hidden-file" id="fi-edited"  onchange="handleMultiUpload(event,'edited')" />
-<input type="file" accept="image/*"          class="hidden-file" id="fi-hpTop"   onchange="handleSingleUpload(event,'hpTop')" />
-<input type="file" accept="image/*" multiple class="hidden-file" id="fi-gallery" onchange="handleMultiUpload(event,'gallery')" />
+<!-- HIDDEN FILE INPUTS -->
+<input type="file" accept="image/*" class="hidden-file" id="fi-slot"    onchange="handleSlotUpload(event)" />
+<input type="file" accept="image/*" class="hidden-file" id="fi-hpTop"   onchange="handleHpTop(event)" />
+<input type="file" accept="image/*" multiple class="hidden-file" id="fi-gallery" onchange="handleGallery(event)" />
 
 <script>
-// ===== SECTION CONFIG =====
-const SECTIONS = [
-    { key: 'before',  label: 'Before',              icon: '🌷', color: '#ff6b6b', bg: 'linear-gradient(135deg,#ff8a80,#ff6b6b)', iconBg: '#fff0f0', multi: true  },
-    { key: 'after',   label: 'After',               icon: '🌸', color: '#00b894', bg: 'linear-gradient(135deg,#55efc4,#00b894)', iconBg: '#edfff4', multi: true  },
-    { key: 'edited',  label: '編集した写真',          icon: '🪄', color: '#6c5ce7', bg: 'linear-gradient(135deg,#a29bfe,#6c5ce7)', iconBg: '#f3f0ff', multi: true  },
-    { key: 'hpTop',   label: 'ホットペッパー TOP',   icon: '💎', color: '#ff9f43', bg: 'linear-gradient(135deg,#ffbe76,#ff9f43)', iconBg: '#fff5e6', multi: false },
-    { key: 'gallery', label: 'フォトギャラリー',      icon: '🎀', color: '#339af0', bg: 'linear-gradient(135deg,#74c0fc,#339af0)', iconBg: '#e8f4ff', multi: true  },
-];
+// ===== CONFIG =====
+const SK = 'photo-mgr-v3';
+const TAB_COLORS = {
+    sessions: 'linear-gradient(135deg,#ff8a80,#ff6b6b)',
+    hpTop:    'linear-gradient(135deg,#ffbe76,#ff9f43)',
+    gallery:  'linear-gradient(135deg,#74c0fc,#339af0)',
+};
 
 // ===== DATA =====
-let db = { staff: [] };
-let currentId = null;
-let currentSection = 'before';
-const SK = 'photo-mgr-v2';
+let db = { companies: [] };
+let currentId   = null;
+let currentTab  = 'sessions';
+let pendingSlot = null; // { sessId, field }
 
 function save() {
     try { localStorage.setItem(SK, JSON.stringify(db)); }
@@ -509,202 +519,279 @@ function load() {
     if (r) try { db = JSON.parse(r); } catch(e) {}
 }
 function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2); }
-function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-function emptyStaff(name, role) {
-    return { id: uid(), name, role, before: [], after: [], edited: [], hpTop: null, gallery: [] };
+function emptyCompany(name, role) {
+    return { id: uid(), name, role, sessions: [], hpTop: null, gallery: [] };
+}
+function emptySession(num) {
+    return { id: uid(), number: num, date: '', beforeNormal: null, beforeEdited: null, afterNormal: null, afterEdited: null };
 }
 
 // ===== SIDEBAR =====
 function renderSidebar() {
-    document.getElementById('staff-list').innerHTML = db.staff.map(s => `
-        <div class="sidebar-item${s.id === currentId ? ' active' : ''}" onclick="selectStaff('${s.id}')">
-            ${esc(s.name)}
-            ${s.role ? `<div class="item-role">${esc(s.role)}</div>` : ''}
+    document.getElementById('staff-list').innerHTML = db.companies.map(c => `
+        <div class="sidebar-item${c.id === currentId ? ' active' : ''}" onclick="selectCompany('${c.id}')">
+            ${esc(c.name)}
+            ${c.role ? `<div class="item-role">${esc(c.role)}</div>` : ''}
         </div>`).join('');
 }
 
-// ===== SELECT STAFF =====
-function selectStaff(id) {
+// ===== SELECT =====
+function selectCompany(id) {
     currentId = id;
     renderSidebar();
     renderDetail();
 }
 
 function renderDetail() {
-    const s = db.staff.find(x => x.id === currentId);
-    if (!s) return;
-
+    const c = db.companies.find(x => x.id === currentId);
+    if (!c) return;
     document.getElementById('empty-state').style.display = 'none';
-    document.getElementById('staff-detail').style.display = 'block';
-    document.getElementById('d-name').textContent = s.name;
-    document.getElementById('d-role').textContent = s.role || '';
-
-    renderTabs();
-    renderSection(currentSection);
+    document.getElementById('company-detail').style.display = 'block';
+    document.getElementById('d-name').textContent = c.name;
+    document.getElementById('d-role').textContent = c.role || '';
+    renderTab(currentTab);
 }
 
 // ===== TABS =====
-function renderTabs() {
-    document.getElementById('section-tabs').innerHTML = SECTIONS.map(sec => `
-        <button class="section-tab${sec.key === currentSection ? ' active' : ''}"
-                style="${sec.key === currentSection ? `background:${sec.bg};` : ''}"
-                onclick="switchSection('${sec.key}')">
-            <span class="tab-icon">${sec.icon}</span>
-            ${sec.label}
-        </button>`).join('');
+function switchTab(key, btn) {
+    currentTab = key;
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('active');
+        b.style.background = '';
+    });
+    document.getElementById('tab-' + key).classList.add('active');
+    btn.classList.add('active');
+    btn.style.background = TAB_COLORS[key];
+    renderTab(key);
 }
 
-function switchSection(key) {
-    currentSection = key;
-    renderTabs();
-    renderSection(key);
+function renderTab(key) {
+    if (key === 'sessions') renderSessions();
+    if (key === 'hpTop')    renderHpTop();
+    if (key === 'gallery')  renderGallery();
 }
 
-// ===== SECTION CONTENT =====
-function renderSection(key) {
-    const s = db.staff.find(x => x.id === currentId);
-    if (!s) return;
-    const sec = SECTIONS.find(x => x.key === key);
-    const el = document.getElementById('section-contents');
+// ===== SESSIONS =====
+function renderSessions() {
+    const c = db.companies.find(x => x.id === currentId);
+    if (!c) return;
+    const cnt = c.sessions.length;
+    document.getElementById('session-count-label').textContent =
+        cnt > 0 ? `施術記録 ${cnt}件` : '施術記録';
 
-    if (sec.multi) {
-        const photos = s[key] || [];
-        el.innerHTML = `
-            <div class="section-card">
-                <div class="section-card-header">
-                    <div class="sec-icon" style="background:${sec.iconBg}">${sec.icon}</div>
-                    <div>
-                        <div class="section-card-title">${sec.label}</div>
-                        <div class="section-card-count">${photos.length}枚</div>
-                    </div>
-                </div>
-                <div class="photo-grid">
-                    ${photos.map((p, i) => `
-                        <div class="photo-item" onclick="openLightbox('${p.src}')">
-                            <img src="${p.src}" alt="" />
-                            ${key === 'after' && p.session ? `<div class="session-badge">${p.session}回目</div>` : ''}
-                            <button class="photo-item-delete"
-                                    onclick="event.stopPropagation();deletePhoto('${key}','${p.id}')">✕</button>
-                        </div>`).join('')}
-                    <div class="photo-add-btn"
-                         style="color:${sec.color};border-color:${sec.color}33"
-                         onclick="document.getElementById('fi-${key}').click()">
-                        <span class="add-plus">+</span>
-                        <span>追加</span>
-                    </div>
-                </div>
+    if (cnt === 0) {
+        document.getElementById('session-list').innerHTML = `
+            <div class="no-sessions">
+                <div class="ns-icon">📋</div>
+                <p>まだ記録がありません<br>「新しい施術を記録」から追加してください</p>
             </div>`;
-    } else {
-        // Single photo (HP TOP)
-        const src = s.hpTop;
-        el.innerHTML = `
-            <div class="section-card">
-                <div class="section-card-header">
-                    <div class="sec-icon" style="background:${sec.iconBg}">${sec.icon}</div>
-                    <div>
-                        <div class="section-card-title">${sec.label}</div>
-                        <div class="section-card-count">メイン写真（1枚）</div>
-                    </div>
-                </div>
-                <div class="single-photo-slot">
-                    <div class="photo-upload-area${src ? ' filled' : ''}"
-                         onclick="document.getElementById('fi-hpTop').click()">
-                        ${src ? `<img class="slot-img" src="${src}" onclick="event.stopPropagation();openLightbox('${src}')" />` : ''}
-                        <div class="slot-placeholder" ${src ? 'style="display:none"' : ''}>
-                            <span class="pl-icon">${sec.icon}</span>
-                            <span>タップして追加</span>
-                        </div>
-                        ${src ? `<div class="slot-overlay">
-                            <button onclick="event.stopPropagation();document.getElementById('fi-hpTop').click()">変更</button>
-                            <button class="ov-del" onclick="event.stopPropagation();clearHpTop()">削除</button>
-                        </div>` : ''}
-                    </div>
-                </div>
-            </div>`;
-    }
-}
-
-// ===== PHOTO UPLOAD =====
-let pendingAfterFiles = [];
-
-function handleMultiUpload(e, key) {
-    const files = Array.from(e.target.files);
-    if (!files.length) return;
-    e.target.value = '';
-
-    if (key === 'after') {
-        pendingAfterFiles = files;
-        const s = db.staff.find(x => x.id === currentId);
-        document.getElementById('session-input').value = s ? (s.after.length + 1) : 1;
-        document.getElementById('session-modal').classList.add('open');
-        setTimeout(() => document.getElementById('session-input').select(), 80);
         return;
     }
 
-    const s = db.staff.find(x => x.id === currentId);
-    if (!s) return;
-    let done = 0;
-    files.forEach(f => {
-        const r = new FileReader();
-        r.onload = ev => {
-            s[key].push({ id: uid(), src: ev.target.result });
-            if (++done === files.length) { save(); renderSection(key); renderTabs(); }
-        };
-        r.readAsDataURL(f);
-    });
+    document.getElementById('session-list').innerHTML = c.sessions.map(sess => `
+        <div class="session-card">
+            <div class="session-card-header">
+                <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                    <span class="session-badge">🌸 ${sess.number}回目</span>
+                    <input type="date" class="session-date-input"
+                           value="${esc(sess.date || '')}"
+                           onchange="updateDate('${sess.id}',this.value)"
+                           placeholder="施術日" />
+                </div>
+                <button class="session-delete-btn" onclick="deleteSession('${sess.id}')" title="削除">🗑</button>
+            </div>
+            <div class="ba-columns">
+
+                <!-- BEFORE -->
+                <div class="ba-col">
+                    <div class="ba-col-title before-t">🌷 Before</div>
+                    <div class="photo-slots">
+                        <div class="slot-wrap">
+                            <div class="slot-label">ノーマル</div>
+                            ${miniSlot(sess, 'beforeNormal', '#ff6b6b')}
+                        </div>
+                        <div class="slot-wrap">
+                            <div class="slot-label">編集済み</div>
+                            ${miniSlot(sess, 'beforeEdited', '#ff6b6b')}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AFTER -->
+                <div class="ba-col">
+                    <div class="ba-col-title after-t">🌸 After</div>
+                    <div class="photo-slots">
+                        <div class="slot-wrap">
+                            <div class="slot-label">ノーマル</div>
+                            ${miniSlot(sess, 'afterNormal', '#00b894')}
+                        </div>
+                        <div class="slot-wrap">
+                            <div class="slot-label">編集済み</div>
+                            ${miniSlot(sess, 'afterEdited', '#00b894')}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>`).join('');
 }
 
-function cancelSession() {
-    pendingAfterFiles = [];
-    document.getElementById('session-modal').classList.remove('open');
-}
-function confirmSession() {
-    const num = parseInt(document.getElementById('session-input').value) || 1;
-    const s = db.staff.find(x => x.id === currentId);
-    if (!s) { cancelSession(); return; }
-    const files = pendingAfterFiles;
-    cancelSession();
-    let done = 0;
-    files.forEach(f => {
-        const r = new FileReader();
-        r.onload = ev => {
-            s.after.push({ id: uid(), src: ev.target.result, session: num });
-            if (++done === files.length) { save(); renderSection('after'); renderTabs(); }
-        };
-        r.readAsDataURL(f);
-    });
+function miniSlot(sess, field, color) {
+    const src = sess[field];
+    if (src) {
+        return `<div class="mini-slot filled" style="border-color:${color}22"
+                     onclick="openLightbox('${src}')">
+                    <img src="${src}" alt="" />
+                    <div class="mini-overlay">
+                        <button onclick="event.stopPropagation();triggerSlot('${sess.id}','${field}')">変更</button>
+                        <button class="ov-del" onclick="event.stopPropagation();clearSlot('${sess.id}','${field}')">削除</button>
+                    </div>
+                </div>`;
+    }
+    return `<div class="mini-slot" style="color:${color};border-color:${color}44"
+                 onclick="triggerSlot('${sess.id}','${field}')">
+                <span class="pl-icon">＋</span>
+                <span class="pl-text">追加</span>
+            </div>`;
 }
 
-function handleSingleUpload(e, key) {
+function addSession() {
+    const c = db.companies.find(x => x.id === currentId);
+    if (!c) return;
+    const nextNum = c.sessions.length > 0
+        ? Math.max(...c.sessions.map(s => s.number)) + 1
+        : 1;
+    c.sessions.push(emptySession(nextNum));
+    save();
+    renderSessions();
+}
+
+function deleteSession(sessId) {
+    const c = db.companies.find(x => x.id === currentId);
+    if (!c || !confirm('この施術記録を削除しますか？')) return;
+    c.sessions = c.sessions.filter(s => s.id !== sessId);
+    save();
+    renderSessions();
+}
+
+function updateDate(sessId, val) {
+    const c = db.companies.find(x => x.id === currentId);
+    if (!c) return;
+    const s = c.sessions.find(x => x.id === sessId);
+    if (s) { s.date = val; save(); }
+}
+
+// ===== SLOT UPLOAD =====
+function triggerSlot(sessId, field) {
+    pendingSlot = { sessId, field };
+    document.getElementById('fi-slot').click();
+}
+
+function handleSlotUpload(e) {
+    const file = e.target.files[0];
+    if (!file || !pendingSlot) return;
+    e.target.value = '';
+    const c = db.companies.find(x => x.id === currentId);
+    if (!c) return;
+    const sess = c.sessions.find(x => x.id === pendingSlot.sessId);
+    if (!sess) return;
+    const field = pendingSlot.field;
+    pendingSlot = null;
+    const r = new FileReader();
+    r.onload = ev => { sess[field] = ev.target.result; save(); renderSessions(); };
+    r.readAsDataURL(file);
+}
+
+function clearSlot(sessId, field) {
+    const c = db.companies.find(x => x.id === currentId);
+    if (!c) return;
+    const sess = c.sessions.find(x => x.id === sessId);
+    if (!sess) return;
+    sess[field] = null;
+    save();
+    renderSessions();
+}
+
+// ===== HP TOP =====
+function renderHpTop() {
+    const c = db.companies.find(x => x.id === currentId);
+    if (!c) return;
+    const area = document.getElementById('hp-top-area');
+    const old = area.querySelector('.slot-img');
+    if (old) old.remove();
+    if (c.hpTop) {
+        const img = document.createElement('img');
+        img.className = 'slot-img';
+        img.src = c.hpTop;
+        img.onclick = e => { e.stopPropagation(); openLightbox(c.hpTop); };
+        area.prepend(img);
+        area.classList.add('filled');
+        area.querySelector('.slot-placeholder').style.display = 'none';
+        area.querySelector('.slot-overlay').style.display = 'flex';
+    } else {
+        area.classList.remove('filled');
+        area.querySelector('.slot-placeholder').style.display = '';
+        area.querySelector('.slot-overlay').style.display = '';
+    }
+}
+
+function handleHpTop(e) {
     const file = e.target.files[0];
     if (!file) return;
-    const s = db.staff.find(x => x.id === currentId);
-    if (!s) return;
+    const c = db.companies.find(x => x.id === currentId);
+    if (!c) return;
     const r = new FileReader();
-    r.onload = ev => { s.hpTop = ev.target.result; save(); renderSection('hpTop'); };
+    r.onload = ev => { c.hpTop = ev.target.result; save(); renderHpTop(); };
     r.readAsDataURL(file);
     e.target.value = '';
 }
-
-function deletePhoto(key, imgId) {
-    const s = db.staff.find(x => x.id === currentId);
-    if (!s || !confirm('この写真を削除しますか？')) return;
-    s[key] = s[key].filter(p => p.id !== imgId);
-    save();
-    renderSection(key);
-    renderTabs();
-}
-
 function clearHpTop() {
-    const s = db.staff.find(x => x.id === currentId);
-    if (!s || !confirm('TOP写真を削除しますか？')) return;
-    s.hpTop = null;
-    save();
-    renderSection('hpTop');
+    const c = db.companies.find(x => x.id === currentId);
+    if (!c || !confirm('TOP写真を削除しますか？')) return;
+    c.hpTop = null; save(); renderHpTop();
 }
 
-// ===== ADD STAFF =====
+// ===== GALLERY =====
+function renderGallery() {
+    const c = db.companies.find(x => x.id === currentId);
+    if (!c) return;
+    document.getElementById('gallery-count-label').textContent =
+        c.gallery.length > 0 ? `${c.gallery.length}枚` : '';
+    const grid = document.getElementById('gallery-grid');
+    grid.innerHTML = c.gallery.map((p, i) => `
+        <div class="gallery-item" onclick="openLightbox(db.companies.find(x=>x.id===currentId).gallery[${i}].src)">
+            <img src="${p.src}" alt="" />
+            <button class="del-gallery-btn" onclick="event.stopPropagation();deleteGallery('${p.id}')">✕</button>
+        </div>`).join('')
+        + `<div class="gallery-add-btn" onclick="document.getElementById('fi-gallery').click()">+</div>`;
+}
+
+function handleGallery(e) {
+    const files = Array.from(e.target.files);
+    if (!files.length) return;
+    const c = db.companies.find(x => x.id === currentId);
+    if (!c) return;
+    let done = 0;
+    files.forEach(f => {
+        const r = new FileReader();
+        r.onload = ev => {
+            c.gallery.push({ id: uid(), src: ev.target.result });
+            if (++done === files.length) { save(); renderGallery(); }
+        };
+        r.readAsDataURL(f);
+    });
+    e.target.value = '';
+}
+function deleteGallery(imgId) {
+    const c = db.companies.find(x => x.id === currentId);
+    if (!c || !confirm('この写真を削除しますか？')) return;
+    c.gallery = c.gallery.filter(p => p.id !== imgId);
+    save(); renderGallery();
+}
+
+// ===== ADD COMPANY MODAL =====
 function openAddModal() {
     document.getElementById('inp-name').value = '';
     document.getElementById('inp-role').value = '';
@@ -714,24 +801,20 @@ function openAddModal() {
 function closeAddModal() {
     document.getElementById('add-modal').classList.remove('open');
 }
-function addStaff() {
+function addCompany() {
     const name = document.getElementById('inp-name').value.trim();
     const role = document.getElementById('inp-role').value.trim();
-    if (!name) { alert('名前を入力してください'); return; }
-    const s = emptyStaff(name, role);
-    db.staff.push(s);
-    save();
-    closeAddModal();
-    selectStaff(s.id);
+    if (!name) { alert('会社名を入力してください'); return; }
+    const c = emptyCompany(name, role);
+    db.companies.push(c);
+    save(); closeAddModal(); selectCompany(c.id);
 }
-function deleteStaff() {
-    const s = db.staff.find(x => x.id === currentId);
-    if (!s || !confirm(`「${s.name}」を削除しますか？（写真データも削除されます）`)) return;
-    db.staff = db.staff.filter(x => x.id !== currentId);
-    currentId = null;
-    save();
-    renderSidebar();
-    document.getElementById('staff-detail').style.display = 'none';
+function deleteCompany() {
+    const c = db.companies.find(x => x.id === currentId);
+    if (!c || !confirm(`「${c.name}」を削除しますか？（写真データも削除されます）`)) return;
+    db.companies = db.companies.filter(x => x.id !== currentId);
+    currentId = null; save(); renderSidebar();
+    document.getElementById('company-detail').style.display = 'none';
     document.getElementById('empty-state').style.display = 'flex';
 }
 
@@ -743,7 +826,7 @@ function openLightbox(src) {
 function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
 
 document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeLightbox(); closeAddModal(); cancelSession(); }
+    if (e.key === 'Escape') { closeLightbox(); closeAddModal(); }
 });
 
 // ===== INIT =====
