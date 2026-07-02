@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>写真管理</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+            background: #f0f2f8;
+            color: #2d3436;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* ===== HEADER ===== */
+        .app-header {
+            background: linear-gradient(120deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            padding: 16px 28px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,.3);
+        }
+        .app-header h1 {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #fff, #a29bfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ===== LAYOUT ===== */
+        .app-body {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            width: 190px;
+            flex-shrink: 0;
+            background: #fff;
+            border-right: 1px solid #e9ecef;
+            display: flex;
+            flex-direction: column;
+            padding: 16px 10px;
+            gap: 2px;
+            box-shadow: 2px 0 10px rgba(0,0,0,.05);
+            overflow-y: auto;
+        }
+        .sidebar-label {
+            font-size: 10px;
+            font-weight: 800;
+            color: #adb5bd;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 2px 10px 10px;
+            border-bottom: 1px solid #f1f3f5;
+            margin-bottom: 4px;
+        }
+        .sidebar-item {
+            padding: 10px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: .15s;
+            font-size: 13px;
+            font-weight: 600;
+            color: #495057;
+        }
+        .sidebar-item:hover { background: #f3f0ff; color: #6c5ce7; }
+        .sidebar-item.active {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: #fff;
+        }
+        .sidebar-item .item-role {
+            font-size: 10px;
+            font-weight: 400;
+            opacity: .7;
+            margin-top: 1px;
+        }
+        .sidebar-add {
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid #f1f3f5;
+        }
+        .sidebar-add button {
+            width: 100%;
+            padding: 10px;
+            border: 2px dashed #dee2e6;
+            border-radius: 10px;
+            background: none;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            color: #adb5bd;
+            transition: .15s;
+        }
+        .sidebar-add button:hover { border-color: #6c5ce7; color: #6c5ce7; }
+
+        /* ===== MAIN ===== */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        /* ===== EMPTY STATE ===== */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #ced4da;
+        }
+        .empty-state .e-icon { font-size: 52px; margin-bottom: 14px; }
+        .empty-state p { font-size: 15px; }
+
+        /* ===== STAFF DETAIL ===== */
+        .staff-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .staff-header-name { font-size: 22px; font-weight: 800; color: #1a1a2e; }
+        .staff-header-role { font-size: 13px; color: #868e96; margin-top: 2px; }
+        .delete-btn {
+            background: none;
+            border: 1.5px solid #ff6b6b;
+            color: #ff6b6b;
+            padding: 7px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            transition: .2s;
+        }
+        .delete-btn:hover { background: #ff6b6b; color: #fff; }
+
+        /* ===== SECTION TABS ===== */
+        .section-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .section-tab {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 10px 18px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 700;
+            transition: .2s;
+            background: #fff;
+            color: #868e96;
+            box-shadow: 0 2px 8px rgba(0,0,0,.08);
+        }
+        .section-tab:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,.12); }
+        .section-tab.active {
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(0,0,0,.2);
+            transform: translateY(-1px);
+        }
+        .section-tab .tab-icon { font-size: 15px; }
+
+        /* ===== SECTION CONTENT ===== */
+        .section-content { display: none; }
+        .section-content.active { display: block; }
+
+        .section-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 2px 16px rgba(0,0,0,.07);
+        }
+        .section-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid #f8f9fa;
+        }
+        .section-card-header .sec-icon {
+            width: 40px; height: 40px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+        }
+        .section-card-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: #1a1a2e;
+        }
+        .section-card-count {
+            font-size: 12px;
+            color: #adb5bd;
+            margin-top: 2px;
+        }
+
+        /* ===== PHOTO GRID ===== */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 14px;
+        }
+        .photo-item {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            cursor: zoom-in;
+            background: #f8f9fa;
+            box-shadow: 0 2px 10px rgba(0,0,0,.08);
+            transition: .2s;
+        }
+        .photo-item:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(0,0,0,.15); }
+        .photo-item img { width: 100%; height: 100%; object-fit: cover; }
+        .photo-item-delete {
+            position: absolute;
+            top: 8px; right: 8px;
+            background: rgba(0,0,0,.55);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 28px; height: 28px;
+            cursor: pointer;
+            font-size: 13px;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0;
+            transition: .2s;
+            font-weight: 700;
+        }
+        .photo-item:hover .photo-item-delete { opacity: 1; }
+
+        .photo-add-btn {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            border: 2.5px dashed #dee2e6;
+            background: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: .2s;
+            color: #ced4da;
+            font-size: 13px;
+            font-weight: 600;
+            gap: 6px;
+        }
+        .photo-add-btn .add-plus { font-size: 28px; font-weight: 300; }
+        .photo-add-btn:hover { border-color: currentColor; }
+
+        /* ===== SINGLE PHOTO SLOT (HP TOP) ===== */
+        .single-photo-slot {
+            max-width: 380px;
+            margin: 0 auto;
+        }
+        .photo-upload-area {
+            border: 2.5px dashed #dee2e6;
+            border-radius: 16px;
+            min-height: 260px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: .2s;
+            background: #f8f9fa;
+        }
+        .photo-upload-area.filled { border-style: solid; border-color: transparent; }
+        .photo-upload-area:hover .slot-overlay { opacity: 1; }
+        .slot-img {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+        .slot-placeholder {
+            display: flex; flex-direction: column;
+            align-items: center; gap: 10px;
+            color: #ced4da;
+            pointer-events: none;
+        }
+        .slot-placeholder .pl-icon { font-size: 36px; }
+        .slot-placeholder span { font-size: 13px; font-weight: 600; }
+        .slot-overlay {
+            position: absolute; inset: 0;
+            background: rgba(0,0,0,.5);
+            display: flex; align-items: center; justify-content: center;
+            gap: 10px;
+            opacity: 0; transition: .2s;
+        }
+        .slot-overlay button {
+            background: rgba(255,255,255,.92);
+            border: none; border-radius: 8px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 12px; font-weight: 700;
+        }
+        .slot-overlay .ov-del { color: #ff6b6b; }
+
+        /* ===== MODAL ===== */
+        .modal-bg {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(10,10,30,.6);
+            backdrop-filter: blur(4px);
+            z-index: 900;
+            align-items: center; justify-content: center;
+        }
+        .modal-bg.open { display: flex; }
+        .modal {
+            background: #fff;
+            border-radius: 20px;
+            padding: 32px;
+            width: 380px;
+            box-shadow: 0 24px 60px rgba(0,0,0,.3);
+        }
+        .modal h3 { font-size: 18px; font-weight: 800; margin-bottom: 24px; color: #1a1a2e; }
+        .fgroup { margin-bottom: 16px; }
+        .fgroup label { display: block; font-size: 12px; font-weight: 700; color: #868e96; margin-bottom: 6px; text-transform: uppercase; letter-spacing: .5px; }
+        .fgroup input {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1.5px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 14px; font-family: inherit;
+            outline: none; transition: .2s;
+        }
+        .fgroup input:focus { border-color: #6c5ce7; }
+        .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 24px; }
+        .btn { border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 700; transition: .2s; }
+        .btn-cancel { background: #f1f3f5; color: #868e96; }
+        .btn-cancel:hover { background: #e9ecef; }
+        .btn-ok { background: linear-gradient(135deg, #6c5ce7, #a29bfe); color: #fff; }
+        .btn-ok:hover { opacity: .9; }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,.92);
+            z-index: 1000;
+            align-items: center; justify-content: center;
+            cursor: zoom-out;
+        }
+        .lightbox.open { display: flex; }
+        .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 10px; }
+
+        .hidden-file { display: none; }
+
+        @media (max-width: 650px) {
+            .sidebar { width: 150px; }
+            .photo-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-header">
+    <span style="font-size:24px">📸</span>
+    <h1>写真管理システム</h1>
+</div>
+
+<div class="app-body">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-label">会社名</div>
+        <div id="staff-list"></div>
+        <div class="sidebar-add">
+            <button onclick="openAddModal()">＋ 会社を追加</button>
+        </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content">
+        <div id="empty-state" class="empty-state">
+            <div class="e-icon">👈</div>
+            <p>スタッフを選択してください</p>
+        </div>
+
+        <div id="staff-detail" style="display:none">
+            <!-- Staff name header -->
+            <div class="staff-header">
+                <div>
+                    <div class="staff-header-name" id="d-name"></div>
+                    <div class="staff-header-role" id="d-role"></div>
+                </div>
+                <button class="delete-btn" onclick="deleteStaff()">🗑 削除</button>
+            </div>
+
+            <!-- Section tabs -->
+            <div class="section-tabs" id="section-tabs"></div>
+
+            <!-- Section contents (rendered dynamically) -->
+            <div id="section-contents"></div>
+        </div>
+    </main>
+</div>
+
+<!-- ADD STAFF MODAL -->
+<div class="modal-bg" id="add-modal" onclick="if(event.target===this)closeAddModal()">
+    <div class="modal">
+        <h3>🏢 会社を追加</h3>
+        <div class="fgroup">
+            <label>会社名</label>
+            <input id="inp-name" type="text" placeholder="株式会社〇〇"
+                   onkeydown="if(event.key==='Enter')document.getElementById('inp-role').focus()" />
+        </div>
+        <div class="fgroup">
+            <label>役職</label>
+            <input id="inp-role" type="text" placeholder="スタイリスト"
+                   onkeydown="if(event.key==='Enter')addStaff()" />
+        </div>
+        <div class="modal-actions">
+            <button class="btn btn-cancel" onclick="closeAddModal()">キャンセル</button>
+            <button class="btn btn-ok" onclick="addStaff()">追加する</button>
+        </div>
+    </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lb-img" src="" alt="" />
+</div>
+
+<!-- Hidden file inputs (one per section + single for TOP) -->
+<input type="file" accept="image/*" multiple class="hidden-file" id="fi-before"  onchange="handleMultiUpload(event,'before')" />
+<input type="file" accept="image/*" multiple class="hidden-file" id="fi-after"   onchange="handleMultiUpload(event,'after')" />
+<input type="file" accept="image/*" multiple class="hidden-file" id="fi-edited"  onchange="handleMultiUpload(event,'edited')" />
+<input type="file" accept="image/*"          class="hidden-file" id="fi-hpTop"   onchange="handleSingleUpload(event,'hpTop')" />
+<input type="file" accept="image/*" multiple class="hidden-file" id="fi-gallery" onchange="handleMultiUpload(event,'gallery')" />
+
+<script>
+// ===== SECTION CONFIG =====
+const SECTIONS = [
+    { key: 'before',  label: 'Before',              icon: '📷', color: '#ff6b6b', bg: 'linear-gradient(135deg,#ff8a80,#ff6b6b)', iconBg: '#fff0f0', multi: true  },
+    { key: 'after',   label: 'After',               icon: '✅', color: '#00b894', bg: 'linear-gradient(135deg,#55efc4,#00b894)', iconBg: '#edfff4', multi: true  },
+    { key: 'edited',  label: '編集した写真',          icon: '✨', color: '#6c5ce7', bg: 'linear-gradient(135deg,#a29bfe,#6c5ce7)', iconBg: '#f3f0ff', multi: true  },
+    { key: 'hpTop',   label: 'ホットペッパー TOP',   icon: '🌶', color: '#ff9f43', bg: 'linear-gradient(135deg,#ffbe76,#ff9f43)', iconBg: '#fff5e6', multi: false },
+    { key: 'gallery', label: 'フォトギャラリー',      icon: '🖼️', color: '#339af0', bg: 'linear-gradient(135deg,#74c0fc,#339af0)', iconBg: '#e8f4ff', multi: true  },
+];
+
+// ===== DATA =====
+let db = { staff: [] };
+let currentId = null;
+let currentSection = 'before';
+const SK = 'photo-mgr-v2';
+
+function save() {
+    try { localStorage.setItem(SK, JSON.stringify(db)); }
+    catch(e) { alert('保存容量が不足しています。不要な写真を削除してください。'); }
+}
+function load() {
+    const r = localStorage.getItem(SK);
+    if (r) try { db = JSON.parse(r); } catch(e) {}
+}
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2); }
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function emptyStaff(name, role) {
+    return { id: uid(), name, role, before: [], after: [], edited: [], hpTop: null, gallery: [] };
+}
+
+// ===== SIDEBAR =====
+function renderSidebar() {
+    document.getElementById('staff-list').innerHTML = db.staff.map(s => `
+        <div class="sidebar-item${s.id === currentId ? ' active' : ''}" onclick="selectStaff('${s.id}')">
+            ${esc(s.name)}
+            ${s.role ? `<div class="item-role">${esc(s.role)}</div>` : ''}
+        </div>`).join('');
+}
+
+// ===== SELECT STAFF =====
+function selectStaff(id) {
+    currentId = id;
+    renderSidebar();
+    renderDetail();
+}
+
+function renderDetail() {
+    const s = db.staff.find(x => x.id === currentId);
+    if (!s) return;
+
+    document.getElementById('empty-state').style.display = 'none';
+    document.getElementById('staff-detail').style.display = 'block';
+    document.getElementById('d-name').textContent = s.name;
+    document.getElementById('d-role').textContent = s.role || '';
+
+    renderTabs();
+    renderSection(currentSection);
+}
+
+// ===== TABS =====
+function renderTabs() {
+    document.getElementById('section-tabs').innerHTML = SECTIONS.map(sec => `
+        <button class="section-tab${sec.key === currentSection ? ' active' : ''}"
+                style="${sec.key === currentSection ? `background:${sec.bg};` : ''}"
+                onclick="switchSection('${sec.key}')">
+            <span class="tab-icon">${sec.icon}</span>
+            ${sec.label}
+        </button>`).join('');
+}
+
+function switchSection(key) {
+    currentSection = key;
+    renderTabs();
+    renderSection(key);
+}
+
+// ===== SECTION CONTENT =====
+function renderSection(key) {
+    const s = db.staff.find(x => x.id === currentId);
+    if (!s) return;
+    const sec = SECTIONS.find(x => x.key === key);
+    const el = document.getElementById('section-contents');
+
+    if (sec.multi) {
+        const photos = s[key] || [];
+        el.innerHTML = `
+            <div class="section-card">
+                <div class="section-card-header">
+                    <div class="sec-icon" style="background:${sec.iconBg}">${sec.icon}</div>
+                    <div>
+                        <div class="section-card-title">${sec.label}</div>
+                        <div class="section-card-count">${photos.length}枚</div>
+                    </div>
+                </div>
+                <div class="photo-grid">
+                    ${photos.map((p, i) => `
+                        <div class="photo-item" onclick="openLightbox('${p.src}')">
+                            <img src="${p.src}" alt="" />
+                            <button class="photo-item-delete"
+                                    onclick="event.stopPropagation();deletePhoto('${key}','${p.id}')">✕</button>
+                        </div>`).join('')}
+                    <div class="photo-add-btn"
+                         style="color:${sec.color};border-color:${sec.color}33"
+                         onclick="document.getElementById('fi-${key}').click()">
+                        <span class="add-plus">+</span>
+                        <span>追加</span>
+                    </div>
+                </div>
+            </div>`;
+    } else {
+        // Single photo (HP TOP)
+        const src = s.hpTop;
+        el.innerHTML = `
+            <div class="section-card">
+                <div class="section-card-header">
+                    <div class="sec-icon" style="background:${sec.iconBg}">${sec.icon}</div>
+                    <div>
+                        <div class="section-card-title">${sec.label}</div>
+                        <div class="section-card-count">メイン写真（1枚）</div>
+                    </div>
+                </div>
+                <div class="single-photo-slot">
+                    <div class="photo-upload-area${src ? ' filled' : ''}"
+                         onclick="document.getElementById('fi-hpTop').click()">
+                        ${src ? `<img class="slot-img" src="${src}" onclick="event.stopPropagation();openLightbox('${src}')" />` : ''}
+                        <div class="slot-placeholder" ${src ? 'style="display:none"' : ''}>
+                            <span class="pl-icon">${sec.icon}</span>
+                            <span>タップして追加</span>
+                        </div>
+                        ${src ? `<div class="slot-overlay">
+                            <button onclick="event.stopPropagation();document.getElementById('fi-hpTop').click()">変更</button>
+                            <button class="ov-del" onclick="event.stopPropagation();clearHpTop()">削除</button>
+                        </div>` : ''}
+                    </div>
+                </div>
+            </div>`;
+    }
+}
+
+// ===== PHOTO UPLOAD =====
+function handleMultiUpload(e, key) {
+    const files = Array.from(e.target.files);
+    if (!files.length) return;
+    const s = db.staff.find(x => x.id === currentId);
+    if (!s) return;
+    let done = 0;
+    files.forEach(f => {
+        const r = new FileReader();
+        r.onload = ev => {
+            s[key].push({ id: uid(), src: ev.target.result });
+            if (++done === files.length) { save(); renderSection(key); renderTabs(); }
+        };
+        r.readAsDataURL(f);
+    });
+    e.target.value = '';
+}
+
+function handleSingleUpload(e, key) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const s = db.staff.find(x => x.id === currentId);
+    if (!s) return;
+    const r = new FileReader();
+    r.onload = ev => { s.hpTop = ev.target.result; save(); renderSection('hpTop'); };
+    r.readAsDataURL(file);
+    e.target.value = '';
+}
+
+function deletePhoto(key, imgId) {
+    const s = db.staff.find(x => x.id === currentId);
+    if (!s || !confirm('この写真を削除しますか？')) return;
+    s[key] = s[key].filter(p => p.id !== imgId);
+    save();
+    renderSection(key);
+    renderTabs();
+}
+
+function clearHpTop() {
+    const s = db.staff.find(x => x.id === currentId);
+    if (!s || !confirm('TOP写真を削除しますか？')) return;
+    s.hpTop = null;
+    save();
+    renderSection('hpTop');
+}
+
+// ===== ADD STAFF =====
+function openAddModal() {
+    document.getElementById('inp-name').value = '';
+    document.getElementById('inp-role').value = '';
+    document.getElementById('add-modal').classList.add('open');
+    setTimeout(() => document.getElementById('inp-name').focus(), 80);
+}
+function closeAddModal() {
+    document.getElementById('add-modal').classList.remove('open');
+}
+function addStaff() {
+    const name = document.getElementById('inp-name').value.trim();
+    const role = document.getElementById('inp-role').value.trim();
+    if (!name) { alert('名前を入力してください'); return; }
+    const s = emptyStaff(name, role);
+    db.staff.push(s);
+    save();
+    closeAddModal();
+    selectStaff(s.id);
+}
+function deleteStaff() {
+    const s = db.staff.find(x => x.id === currentId);
+    if (!s || !confirm(`「${s.name}」を削除しますか？（写真データも削除されます）`)) return;
+    db.staff = db.staff.filter(x => x.id !== currentId);
+    currentId = null;
+    save();
+    renderSidebar();
+    document.getElementById('staff-detail').style.display = 'none';
+    document.getElementById('empty-state').style.display = 'flex';
+}
+
+// ===== LIGHTBOX =====
+function openLightbox(src) {
+    document.getElementById('lb-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeLightbox(); closeAddModal(); }
+});
+
+// ===== INIT =====
+load();
+renderSidebar();
+</script>
+</body>
+</html>
