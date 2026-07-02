@@ -247,6 +247,20 @@
         }
         .photo-item:hover .photo-item-delete { opacity: 1; }
 
+        .session-badge {
+            position: absolute;
+            bottom: 8px; left: 8px;
+            background: linear-gradient(135deg, #55efc4, #00b894);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 20px;
+            letter-spacing: .3px;
+            box-shadow: 0 2px 8px rgba(0,184,148,.4);
+            pointer-events: none;
+        }
+
         .photo-add-btn {
             aspect-ratio: 1;
             border-radius: 12px;
@@ -437,6 +451,27 @@
     </div>
 </div>
 
+<!-- SESSION MODAL -->
+<div class="modal-bg" id="session-modal" onclick="if(event.target===this)cancelSession()">
+    <div class="modal">
+        <h3>🌸 何回目の施術ですか？</h3>
+        <div class="fgroup">
+            <label>施術回数</label>
+            <div style="display:flex;align-items:center;gap:10px">
+                <input id="session-input" type="number" min="1"
+                       style="max-width:110px;font-size:22px;font-weight:800;text-align:center;border-color:#00b894"
+                       onkeydown="if(event.key==='Enter')confirmSession()" />
+                <span style="font-size:18px;font-weight:700;color:#868e96">回目</span>
+            </div>
+        </div>
+        <div class="modal-actions">
+            <button class="btn btn-cancel" onclick="cancelSession()">キャンセル</button>
+            <button class="btn btn-ok" style="background:linear-gradient(135deg,#55efc4,#00b894)"
+                    onclick="confirmSession()">追加する</button>
+        </div>
+    </div>
+</div>
+
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
     <img id="lb-img" src="" alt="" />
@@ -548,6 +583,7 @@ function renderSection(key) {
                     ${photos.map((p, i) => `
                         <div class="photo-item" onclick="openLightbox('${p.src}')">
                             <img src="${p.src}" alt="" />
+                            ${key === 'after' && p.session ? `<div class="session-badge">${p.session}回目</div>` : ''}
                             <button class="photo-item-delete"
                                     onclick="event.stopPropagation();deletePhoto('${key}','${p.id}')">✕</button>
                         </div>`).join('')}
@@ -590,9 +626,22 @@ function renderSection(key) {
 }
 
 // ===== PHOTO UPLOAD =====
+let pendingAfterFiles = [];
+
 function handleMultiUpload(e, key) {
     const files = Array.from(e.target.files);
     if (!files.length) return;
+    e.target.value = '';
+
+    if (key === 'after') {
+        pendingAfterFiles = files;
+        const s = db.staff.find(x => x.id === currentId);
+        document.getElementById('session-input').value = s ? (s.after.length + 1) : 1;
+        document.getElementById('session-modal').classList.add('open');
+        setTimeout(() => document.getElementById('session-input').select(), 80);
+        return;
+    }
+
     const s = db.staff.find(x => x.id === currentId);
     if (!s) return;
     let done = 0;
@@ -604,7 +653,27 @@ function handleMultiUpload(e, key) {
         };
         r.readAsDataURL(f);
     });
-    e.target.value = '';
+}
+
+function cancelSession() {
+    pendingAfterFiles = [];
+    document.getElementById('session-modal').classList.remove('open');
+}
+function confirmSession() {
+    const num = parseInt(document.getElementById('session-input').value) || 1;
+    const s = db.staff.find(x => x.id === currentId);
+    if (!s) { cancelSession(); return; }
+    const files = pendingAfterFiles;
+    cancelSession();
+    let done = 0;
+    files.forEach(f => {
+        const r = new FileReader();
+        r.onload = ev => {
+            s.after.push({ id: uid(), src: ev.target.result, session: num });
+            if (++done === files.length) { save(); renderSection('after'); renderTabs(); }
+        };
+        r.readAsDataURL(f);
+    });
 }
 
 function handleSingleUpload(e, key) {
@@ -674,7 +743,7 @@ function openLightbox(src) {
 function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
 
 document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeLightbox(); closeAddModal(); }
+    if (e.key === 'Escape') { closeLightbox(); closeAddModal(); cancelSession(); }
 });
 
 // ===== INIT =====
